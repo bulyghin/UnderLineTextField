@@ -203,7 +203,7 @@ open class UnderLineTextField: UITextField {
                                                    toItem: self,
                                                    attribute: .bottom,
                                                    multiplier: 1,
-                                                   constant: 0))
+                                                   constant: 8))
         neededConstraint.append(NSLayoutConstraint(item: label,
                                                    attribute: .trailing,
                                                    relatedBy: .equal,
@@ -567,7 +567,7 @@ extension UnderLineTextField {
     private func createLinePath() -> UIBezierPath {
         let path = UIBezierPath()
         let heightLine = (font?.pointSize ?? 0) + 8
-        let padding = heightLine + heightLine * 0.8 + 9
+        let padding = heightLine + heightLine * 0.8 + 14
         path.move(to: CGPoint(x: 0, y: padding))
         path.addLine(to: CGPoint(x: bounds.maxX, y: padding))
         return path
