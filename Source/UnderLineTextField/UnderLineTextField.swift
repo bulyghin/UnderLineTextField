@@ -83,8 +83,7 @@ open class UnderLineTextField: UITextField {
     
     open var placeholderFont: UIFont? {
         set {
-            super.font = newValue
-            if let fontName = font?.familyName, let size = font?.pointSize {
+            if let fontName = newValue?.familyName, let size = newValue?.pointSize {
                 placeholderLabel.font = UIFont(name: fontName, size: size)
             }
         }
