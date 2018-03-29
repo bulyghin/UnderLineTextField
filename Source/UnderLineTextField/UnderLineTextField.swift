@@ -403,7 +403,7 @@ extension UnderLineTextField {
             super.font = newValue
             adjustHeight()
             if let fontName = font?.fontName, let size = font?.pointSize {
-                errorLabel.font = UIFont(name: fontName, size: size * 0.8)
+                errorLabel.font = UIFont(name: fontName, size: size * 0.72)
                 placeholderLabel.font = UIFont(name: fontName, size: size)
             }
         }
@@ -519,13 +519,13 @@ extension UnderLineTextField {
     /// change placeholder Place
     private func setPlaceholderPlace(isUp: Bool, isAnimated: Bool) {
         if isUp {
-            var xTransform = placeholderLabel.bounds.width * 0.15
+            var xTransform = placeholderLabel.bounds.width * 0.17
 
             xTransform *= semanticContentAttribute == .forceRightToLeft ? 1 : -1
             let label = self.placeholderLabel
             guard isAnimated else {
                 placeholderLabel.textColor = placeholderColor
-                label.transform = label.transform.scaledBy(x: 0.8, y: 0.8)
+                label.transform = label.transform.scaledBy(x: 0.75, y: 0.75)
                 label.transform = label
                     .transform
                     .translatedBy(x: xTransform,
@@ -533,7 +533,7 @@ extension UnderLineTextField {
                 return
             }
             UIView.animate(withDuration: animationDuration, animations: {
-                label.transform = label.transform.scaledBy(x: 0.8, y: 0.8)
+                label.transform = label.transform.scaledBy(x: 0.75, y: 0.75)
                 label.transform = label
                     .transform
                     .translatedBy(x: xTransform,
