@@ -460,11 +460,13 @@ extension UnderLineTextField {
 
     override open func becomeFirstResponder() -> Bool {
         focusStatus = .active
+        contentStatus = .filled
         return super.becomeFirstResponder()
     }
 
     override open func resignFirstResponder() -> Bool {
         focusStatus = .inactive
+        decideContentStatus(fromText: self.text)
         return super.resignFirstResponder()
     }
 
