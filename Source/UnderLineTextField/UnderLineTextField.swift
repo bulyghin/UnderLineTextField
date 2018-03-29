@@ -13,6 +13,7 @@ import QuartzCore
 @IBDesignable
 open class UnderLineTextField: UITextField {
     private var isLayoutCalled = false
+    private var isInitialized = false
     //============
     // MARK: - inits
     //============
@@ -39,7 +40,9 @@ open class UnderLineTextField: UITextField {
         NSLayoutConstraint.activate(neededConstraint)
         adjustHeight()
         errorLabel.alpha = 0
+        isInitialized = false
         text = super.text
+        isInitialized = true
     }
 
     //=================
@@ -73,9 +76,9 @@ open class UnderLineTextField: UITextField {
             }
             layoutIfNeeded()
             if contentStatus == .empty {
-                setPlaceholderPlace(isUp: false, isAnimated: true)
+                setPlaceholderPlace(isUp: false, isAnimated: isInitialized)
             } else {
-                setPlaceholderPlace(isUp: true, isAnimated: true)
+                setPlaceholderPlace(isUp: true, isAnimated: isInitialized)
             }
             setNeedsDisplay()
         }
@@ -610,6 +613,7 @@ extension UnderLineTextField {
             return
         }
         text = ""
+        decideContentStatus(fromText: " ")
         (delegate as? UnderLineTextFieldDelegate)?.textFieldTextChanged(underLineTextField: self)
     }
     /// textfield become first responder
