@@ -404,6 +404,7 @@ extension UnderLineTextField {
             adjustHeight()
             if let fontName = font?.familyName, let size = font?.pointSize {
                 errorLabel.font = UIFont(name: fontName, size: size * 0.8)
+                placeholderLabel.font = UIFont(name: fontName, size: size)
             }
         }
         get {
