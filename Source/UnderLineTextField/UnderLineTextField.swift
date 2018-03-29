@@ -80,17 +80,6 @@ open class UnderLineTextField: UITextField {
             setNeedsDisplay()
         }
     }
-    
-    open var placeholderFont: UIFont? {
-        set {
-            if let fontName = newValue?.familyName, let size = newValue?.pointSize {
-                placeholderLabel.font = UIFont(name: fontName, size: size)
-            }
-        }
-        get {
-            return super.font
-        }
-    }
 
     /// validation time type
     open var validationType: UnderLineTextFieldValidateType = .afterEdit
@@ -413,7 +402,7 @@ extension UnderLineTextField {
         set {
             super.font = newValue
             adjustHeight()
-            if let fontName = font?.familyName, let size = font?.pointSize {
+            if let fontName = font?.fontName, let size = font?.pointSize {
                 errorLabel.font = UIFont(name: fontName, size: size * 0.8)
                 placeholderLabel.font = UIFont(name: fontName, size: size)
             }
