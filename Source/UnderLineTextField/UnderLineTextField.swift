@@ -163,7 +163,7 @@ open class UnderLineTextField: UITextField {
                                   constant: 0)
     }()
     private lazy var clearButton: UIButton = {
-        let button = UIButton(type: .custom)
+        let button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
         let bundle = Bundle.init(for: UnderLineTextField.self)
         let clearImage = UIImage(named: "Clear",
                                  in: bundle,
@@ -172,7 +172,7 @@ open class UnderLineTextField: UITextField {
         button.setImage(clearImage, for: .highlighted)
         button.addTarget(self, action: #selector(self.clearText), for: .touchUpInside)
         button.tintColor = tintColor
-        button.sizeToFit()
+//        button.sizeToFit()
         rightView = button
         return button
     }()
@@ -614,6 +614,7 @@ extension UnderLineTextField {
         }
         text = ""
         decideContentStatus(fromText: " ")
+        clearButtonMode = .never
         (delegate as? UnderLineTextFieldDelegate)?.textFieldTextChanged(underLineTextField: self)
     }
     /// textfield become first responder
@@ -641,6 +642,8 @@ extension UnderLineTextField {
         (delegate as? UnderLineTextFieldDelegate)?
             .textFieldTextChanged(underLineTextField: self)
         decideContentStatus(fromText: text)
+        contentStatus = .filled
+        clearButtonMode = (((text ?? "") as NSString).length > 0 ? .whileEditing : .never)
         guard let text = text, !text.isEmpty else {
             if validationType.contains(.onFly) ||
                 validationType.contains(.always) {
