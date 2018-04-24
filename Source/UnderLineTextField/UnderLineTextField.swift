@@ -109,8 +109,10 @@ open class UnderLineTextField: UITextField {
             return activeLineColor
         case ((.error,_,_)):
             return errorLineColor
-        case ((.warning,_,_)):
+        case (.warning, _, .inactive):
             return warningLineColor
+        case (.warning, _, .active):
+            return activeLineColor
         default:
             return inactivePlaceholderTextColor
         }
@@ -124,8 +126,10 @@ open class UnderLineTextField: UITextField {
             return activeLineWidth
         case ((.error,_,_)):
             return errorLineWidth
-        case ((.warning,_,_)):
+        case (.warning, _, .inactive):
             return warningLineWidth
+        case (.warning, _, .active):
+            return activeLineWidth
         default:
             return inactiveLineWidth
         }
@@ -177,7 +181,7 @@ open class UnderLineTextField: UITextField {
         return button
     }()
     /// layer which line will be drawn on it
-    private lazy var lineLayer: CAShapeLayer = {
+    lazy var lineLayer: CAShapeLayer = {
         let layer = CAShapeLayer(layer: self.layer)
         layer.lineCap = kCALineCapRound
         layer.strokeColor = lineColor.cgColor
