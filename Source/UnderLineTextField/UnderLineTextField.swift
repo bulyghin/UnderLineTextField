@@ -645,6 +645,7 @@ extension UnderLineTextField {
         } else {
             focusStatus = .inactive
         }
+        clearButtonMode = .never
     }
     /// textfield value changed
     private func formTextFieldValueChanged() {
