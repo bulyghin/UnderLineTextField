@@ -632,7 +632,7 @@ extension UnderLineTextField {
         if let text = text, text.count > 0 {
             clearButtonMode = .always
         } else {
-            clearButtonMode = .whileEditing
+            clearButtonMode = .never
         }
     }
     /// textfield resigned first responder
