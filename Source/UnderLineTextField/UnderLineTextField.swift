@@ -629,6 +629,11 @@ extension UnderLineTextField {
         } else {
             focusStatus = .active
         }
+        if let text = text, text.count > 0 {
+            clearButtonMode = .always
+        } else {
+            clearButtonMode = .whileEditing
+        }
     }
     /// textfield resigned first responder
     private func formTextFieldDidEndEditing() {
