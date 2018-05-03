@@ -167,17 +167,21 @@ open class UnderLineTextField: UITextField {
                                   constant: 0)
     }()
     private lazy var clearButton: UIButton = {
-        let button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
+        let view = UIView.init(frame: CGRect(x: 0, y: 0, width: 40, height: 32))
+        let button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 40, height: 32))
         let bundle = Bundle.init(for: UnderLineTextField.self)
         let clearImage = UIImage(named: "Clear",
                                  in: bundle,
                                  compatibleWith: nil)
-        button.setImage(clearImage, for: .normal)
-        button.setImage(clearImage, for: .highlighted)
+        let imageView = UIImageView.init(frame: CGRect(x: 8, y: 8, width: 16, height: 16))
+        imageView.image = clearImage
+        
         button.addTarget(self, action: #selector(self.clearText), for: .touchUpInside)
         button.tintColor = tintColor
-//        button.sizeToFit()
-        rightView = button
+        
+        view.addSubview(imageView)
+        view.addSubview(button)
+        rightView = view
         return button
     }()
     /// layer which line will be drawn on it
@@ -579,7 +583,7 @@ extension UnderLineTextField {
         let heightLine = (font?.pointSize ?? 0) + 8
         let padding = heightLine + heightLine * 0.8 + 14
         path.move(to: CGPoint(x: 0, y: padding))
-        path.addLine(to: CGPoint(x: bounds.maxX, y: padding))
+        path.addLine(to: CGPoint(x: bounds.maxX - 16, y: padding))
         return path
     }
 
